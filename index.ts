@@ -41,14 +41,20 @@ async function fetchData() {
             log += ` - Getting messages to end: ${before == "" ? "END" : before}\n`
 
             var chat_link = CHAT_TEMPLATE.replace("$CHANNEL", id) + (before == "" ? "" : `&before=${before}`)
-            var result = await fetch(chat_link, {
-                "headers": {
-                    "accept": "*/*",
-                    "accept-language": "en-US",
-                    "authorization": API_KEY,
-                },
-                "method": "GET",
-            })
+            try {
+                var result = await fetch(chat_link, {
+                    "headers": {
+                        "accept": "*/*",
+                        "accept-language": "en-US",
+                        "authorization": API_KEY,
+                    },
+                    "method": "GET",
+                })
+            }
+            catch (e) {
+                console.error(e)
+                continue
+            }
 
             if (!result.ok) {
                 if (retry < CONF.RETRY_AMOUNT) {
