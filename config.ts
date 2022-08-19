@@ -15,11 +15,11 @@ const DATA_DIR = "./data"
 // ? The amount of times to retry the request if it fails.
 const RETRY_AMOUNT = 10
 
+// ? The maximum amount of data to write to the JSON file
+const SPLIT_EVERY = 100000
+
 // ? Should the log be saved to a file?
 const WRITE_LOG = true
-
-// ? If true, then the chat data of each channel will be saved to a seperate file.
-const SEPERATE_DATA = true
 
 // ? Should the JSON be pretty printed?
 const BEAUTIFY = false
@@ -39,4 +39,4 @@ const EXCLUDE_PROPERTIES: MessageProperties[] = [
 
 // ? Display the content of the message into stdout.
 const DISPLAY_MSG: DisplayMessageType = DisplayMessageType.PARTIAL
-export { DELAY, ID_LIST, WRITE_LOG, SEPERATE_DATA, RETRY_AMOUNT, LOG_DIR, DATA_DIR, BEAUTIFY, EXCLUDE_PROPERTIES, DISPLAY_MSG }
+export { DELAY, ID_LIST, WRITE_LOG, RETRY_AMOUNT, LOG_DIR, DATA_DIR, BEAUTIFY, EXCLUDE_PROPERTIES, DISPLAY_MSG, SPLIT_EVERY }
