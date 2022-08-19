@@ -42,6 +42,8 @@ async function fetchData() {
     fs.mkdirSync(CONF.LOG_DIR, { recursive: true });
     for (const id of CONF.ID_LIST) {
         var count = 0;
+        var limit_count = 0;
+        var file_count = 1;
         var retry = 0;
         var before = "";
         console.log(`Now fetching: ${id}`);
@@ -78,8 +80,11 @@ async function fetchData() {
                 }
             }
             var r = await result.json();
-            if (r.length <= 0)
+            if (r.length <= 0) {
+                writeJSON(`${CONF.DATA_DIR}/data-${id}-${file_count}.json`, data);
+                data[id] = [];
                 break;
+            }
             if (CONF.EXCLUDE_PROPERTIES.length > 0) {
                 for (const m of r) {
                     for (const p of CONF.EXCLUDE_PROPERTIES) {
@@ -89,6 +94,7 @@ async function fetchData() {
                 log += ` - Excluded properties: ${CONF.EXCLUDE_PROPERTIES.join(", ")}\n`;
             }
             count += r.length;
+            limit_count += r.length;
             log += ` - Successfully fetched message from ${r[0].timestamp} to ${r[r.length - 1].timestamp}\n`;
             log += ` - Message count: ${count}\n`;
             before = r[r.length - 1].id;
@@ -101,18 +107,20 @@ async function fetchData() {
                     break;
             }
             data[id].push(...r);
+            if (limit_count > CONF.SPLIT_EVERY) {
+                console.log(` - Splitting file ${file_count}`);
+                writeJSON(`${CONF.DATA_DIR}/data-${id}-${file_count}.json`, data);
+                file_count++;
+                limit_count = 0;
+                data[id] = [];
+            }
             console.log(log);
             logstream?.write(log);
         }
         logstream?.end(`Total MSG in ${id}: ${count}`);
         console.log(`Total MSG in ${id}: ${count}`);
-        if (CONF.SEPERATE_DATA) {
-            writeJSON(`${CONF.DATA_DIR}/data-${id}.json`, data);
-            data = {};
-        }
+        data = {};
     }
-    if (!CONF.SEPERATE_DATA)
-        writeJSON(`${CONF.DATA_DIR}/data.json`, data);
 }
 (async () => {
     var start = new Date();
