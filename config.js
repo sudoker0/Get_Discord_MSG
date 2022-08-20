@@ -1,11 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.SPLIT_EVERY = exports.DISPLAY_MSG = exports.EXCLUDE_PROPERTIES = exports.BEAUTIFY = exports.DATA_DIR = exports.LOG_DIR = exports.RETRY_AMOUNT = exports.WRITE_LOG = exports.ID_LIST = exports.DELAY = void 0;
+exports.GUILD_ID = exports.SPLIT_EVERY = exports.DISPLAY_MSG = exports.EXCLUDE_PROPERTIES = exports.BEAUTIFY = exports.DATA_DIR = exports.LOG_DIR = exports.RETRY_AMOUNT = exports.WRITE_LOG = exports.ID_LIST = exports.DELAY = void 0;
 const enum_1 = require("./types/enum");
 const DELAY = 100;
 exports.DELAY = DELAY;
 const ID_LIST = [];
 exports.ID_LIST = ID_LIST;
+const GUILD_ID = "";
+exports.GUILD_ID = GUILD_ID;
 const LOG_DIR = "./log";
 exports.LOG_DIR = LOG_DIR;
 const DATA_DIR = "./data";

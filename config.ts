@@ -8,6 +8,9 @@ const ID_LIST: string[] = [
 
 ]
 
+// ? The server ID
+const GUILD_ID = ""
+
 // ? The directories to save the logs and the data relative to the root of the project.
 const LOG_DIR = "./log"
 const DATA_DIR = "./data"
@@ -39,4 +42,4 @@ const EXCLUDE_PROPERTIES: MessageProperties[] = [
 
 // ? Display the content of the message into stdout.
 const DISPLAY_MSG: DisplayMessageType = DisplayMessageType.PARTIAL
-export { DELAY, ID_LIST, WRITE_LOG, RETRY_AMOUNT, LOG_DIR, DATA_DIR, BEAUTIFY, EXCLUDE_PROPERTIES, DISPLAY_MSG, SPLIT_EVERY }
+export { DELAY, ID_LIST, WRITE_LOG, RETRY_AMOUNT, LOG_DIR, DATA_DIR, BEAUTIFY, EXCLUDE_PROPERTIES, DISPLAY_MSG, SPLIT_EVERY, GUILD_ID }

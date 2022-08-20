@@ -37,11 +37,16 @@ Install the dependencies:
 ```bash
 npm install
 ```
+Compile TypeScript files:
+```bash
+npx tsc
+```
 
 ## Configuration
  - `config.ts`: This file contains the configuration for the NodeJS program.
    - `DELAY`: The delay between requests.
    - `ID_LIST`: The list of channel IDs to get the messages from.
+   - `GUILD_ID`: The ID of server you want to get the messages from.
    - `LOG_DIR` and `DATA_DIR`: The directories to save the logs and the data relative to the root of the project.
    - `RETRY_AMOUNT`: The amount of times to retry the request if it fails.
    - ... and more can be found in the file.
