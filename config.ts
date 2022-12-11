@@ -18,7 +18,7 @@ const DATA_DIR = "./data"
 // ? The amount of times to retry the request if it fails.
 const RETRY_AMOUNT = 10
 
-// ? The maximum amount of chat data to write to each JSON file
+// ? The maximum amount of chat data to write to each JSON file (must be a multiple of 100)
 const SPLIT_EVERY = 100000
 
 // ? Should the log be saved to a file?

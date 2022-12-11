@@ -68,6 +68,11 @@ async function fetchData() {
             }
         }
 
+        if (CONF.SPLIT_EVERY % 100 != 0) {
+            await log(" - An internal error has occured: CONF.SPLIT_EVERY must be a muliple of 100")
+            break bmain
+        }
+
         data[id] = []
         await log(`=========================`)
         await log(`Now fetching: ${id}`)
@@ -180,7 +185,7 @@ async function fetchData() {
             }
             data[id].push(...res)
 
-            if (limit_count > CONF.SPLIT_EVERY) {
+            if (limit_count >= CONF.SPLIT_EVERY) {
                 await log(` - Maximum amount of data allow in one file reached, now writing the data to file #${file_count}...`)
                 await writeJSON(`${CONF.DATA_DIR}/data-${id}-${file_count}.json`, data)
                 file_count++
