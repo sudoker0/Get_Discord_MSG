@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DisplayMessageType = exports.MessageProperties = void 0;
+exports.ExistingDataAction = exports.DisplayMessageType = exports.MessageProperties = void 0;
 var MessageProperties;
 (function (MessageProperties) {
     MessageProperties["ID"] = "id";
@@ -29,4 +29,10 @@ var DisplayMessageType;
     DisplayMessageType[DisplayMessageType["PARTIAL"] = 1] = "PARTIAL";
     DisplayMessageType[DisplayMessageType["FULL"] = 2] = "FULL";
 })(DisplayMessageType = exports.DisplayMessageType || (exports.DisplayMessageType = {}));
+var ExistingDataAction;
+(function (ExistingDataAction) {
+    ExistingDataAction[ExistingDataAction["NOTHING"] = 0] = "NOTHING";
+    ExistingDataAction[ExistingDataAction["APPEND_NEW_DATA"] = 1] = "APPEND_NEW_DATA";
+    ExistingDataAction[ExistingDataAction["OVERRIDE_DATA"] = 2] = "OVERRIDE_DATA";
+})(ExistingDataAction = exports.ExistingDataAction || (exports.ExistingDataAction = {}));
 //# sourceMappingURL=enum.js.map

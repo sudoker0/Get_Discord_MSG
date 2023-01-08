@@ -25,3 +25,9 @@ export enum DisplayMessageType {
     PARTIAL = 1,
     FULL = 2,
 }
+
+export enum ExistingDataAction {
+    NOTHING = 0,
+    APPEND_NEW_DATA = 1,
+    OVERRIDE_DATA = 2,
+}
