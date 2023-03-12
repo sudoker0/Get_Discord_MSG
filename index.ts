@@ -90,7 +90,7 @@ async function fetchData() {
         }
 
         if (CONF.SPLIT_EVERY % 100 != 0) {
-            await log(" - An internal error has occured: CONF.SPLIT_EVERY must be a muliple of 100")
+            await log(" - An internal error has occurred: CONF.SPLIT_EVERY must be a multiple of 100")
             break bmain
         }
 
@@ -108,23 +108,24 @@ async function fetchData() {
                 }
                 break
             case ExistingDataAction.APPEND_NEW_DATA:
+                await log (` - Warning: You should use NOTHING or OVERRIDE_DATA instead of APPEND_NEW_DATA.`)
                 var path = `${DIR_TO_STORE_DATA}/metadata.json`
                 if (!fs.existsSync(path)) {
                     await log(` - Warning: Cannot find metadata (${path}). Fallback to creating new data instead.`)
                     break
                 }
-                
+
                 var readData = await readJSON(path)
 
                 after_message_id_list = readData["begin_id"]
                 after_message_id = after_message_id_list[after_message_id_list.length - 2]
                 after_message_id_list.pop()
                 await log(`Let's continue from message: ${after_message_id}`)
-                
+
                 file_count = readData["file_count"]
                 count = readData["count"]
                 fs.rmSync(`${DIR_TO_STORE_DATA}/data-${file_count}.json`)
-                
+
                 break
             case ExistingDataAction.OVERRIDE_DATA:
                 fs.rmSync(DIR_TO_STORE_DATA, { recursive: true, force: true })
@@ -246,10 +247,10 @@ async function fetchData() {
             count += res.length
             limit_count += res.length
             res.reverse()
-            
+
             await log(` - Successfully fetched message from ${res[0].timestamp} to ${res[res.length - 1].timestamp}`)
             await log(` - Message count: ${count} / ${total_msg}`)
-            
+
             after_message_id = res[res.length - 1].id
             after_message_id_list.push(after_message_id)
 
@@ -265,12 +266,12 @@ async function fetchData() {
 
             if (limit_count >= CONF.SPLIT_EVERY) {
                 await log(` - Maximum amount of data allow in one file reached, now writing the data to file #${file_count}...`)
-                
+
                 var filename = randomUUID()
                 filelist[file_count] = filename
                 fs.mkdirSync(DIR_TO_STORE_DATA, { recursive: true })
                 await writeJSON(`${DIR_TO_STORE_DATA}/${filename}.json`, data)
-                
+
                 file_count++
                 limit_count = 0
                 data[id] = []

@@ -111,7 +111,7 @@ async function fetchData() {
             }
         };
         if (CONF.SPLIT_EVERY % 100 != 0) {
-            await log(" - An internal error has occured: CONF.SPLIT_EVERY must be a muliple of 100");
+            await log(" - An internal error has occurred: CONF.SPLIT_EVERY must be a multiple of 100");
             break bmain;
         }
         data[id] = [];
@@ -127,6 +127,7 @@ async function fetchData() {
                 }
                 break;
             case enum_1.ExistingDataAction.APPEND_NEW_DATA:
+                await log(` - Warning: You should use NOTHING or OVERRIDE_DATA instead of APPEND_NEW_DATA.`);
                 var path = `${DIR_TO_STORE_DATA}/metadata.json`;
                 if (!fs.existsSync(path)) {
                     await log(` - Warning: Cannot find metadata (${path}). Fallback to creating new data instead.`);

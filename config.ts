@@ -13,7 +13,7 @@ const GUILD_ID = ""
 
 // ? What to do with existing chat data? (yeah i can't think of any original name here)
 // ? NOTHING: Do nothing (if existing data is found, exit)
-// ? APPEND_NEW_DATA: Append new chat data to existing data
+// ? APPEND_NEW_DATA: Append new chat data to existing data (not recommended)
 // ? OVERRIDE_DATA: Override existing data
 const WHAT_TO_DO_WITH_EXISTING_CHAT_DATA: ExistingDataAction = ExistingDataAction.NOTHING
 
@@ -34,7 +34,7 @@ const WRITE_LOG = true
 // ? Should the JSON be pretty printed?
 const BEAUTIFY = false
 
-// ? Since Discord API returnes a lot of properties of a chat that can be unneeded, this list will be used to filter out the unneeded properties.
+// ? Since Discord API returns a lot of properties of a chat that can be unneeded, this list will be used to filter out the unneeded properties.
 const EXCLUDE_PROPERTIES: MessageProperties[] = [
     MessageProperties.TYPE,
     MessageProperties.TTS,
