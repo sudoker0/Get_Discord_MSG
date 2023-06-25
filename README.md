@@ -1,5 +1,7 @@
 # Get Discord Messages (An Open-Source project)
 
+### NOTICE: This project is now deprecated in favour of it's successor: [https://github.com/sudoker0/DiscordMessageScraper](https://github.com/sudoker0/DiscordMessageScraper)
+
 ## Menu
  - [Menu](#menu)
  - [Introduction](#introduction)
